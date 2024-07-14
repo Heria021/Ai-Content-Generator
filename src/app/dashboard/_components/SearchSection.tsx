@@ -10,7 +10,7 @@ function SearchSection({ onSearchInput }: any) {
                 <input type="text" placeholder='Search' className=' w-full outline-none bg-transparent'
                     onChange={(event) => onSearchInput(event.target.value)} />
             </div>
-            <p className=' md:max-w-3xl text-secondary-foreground opacity-65'>Explore thousands of beautiful free templates. With Canva's drag and drop feature, you can customize your design for any occasion in just a few clicks.</p>
+            <p className=' text-sm md:text-base md:max-w-3xl text-secondary-foreground opacity-65'>Explore thousands of beautiful free templates. With Canva's drag and drop feature, you can customize your design for any occasion in just a few clicks.</p>
         </div>
     )
 }
