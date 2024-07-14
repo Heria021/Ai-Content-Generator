@@ -1,5 +1,5 @@
 'use client';
-import { ChevronDown, ChevronUp, MoveRight } from 'lucide-react';
+import { ChevronDown, ChevronUp, MenuIcon, MoveRight } from 'lucide-react';
 import Link from 'next/link';
 import React, { useEffect, useState, useRef, RefObject } from 'react';
 import { ModeToggle } from '@/app/dashboard/_components/Mode';
@@ -10,6 +10,14 @@ import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import Templates from '@/app/(data)/Templates';
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu"
 
 function Header() {
   const { user } = useUser();
@@ -39,6 +47,25 @@ function Header() {
   return (
     <div className={`${isHidden ? "hidden" : ""} relative w-full py-3 md:py-4 bg-primary text-primary-foreground`}>
       <div className="px-4 sm:w-full lg:max-w-[80%] m-auto flex justify-between items-center">
+
+        <div className="flex items-center justify-center sm:hidden">
+          <DropdownMenu>
+            <DropdownMenuTrigger>
+              <MenuIcon size={28} />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent>
+              <Link href={'/'}><DropdownMenuItem>Home</DropdownMenuItem></Link>
+              <DropdownMenuSeparator />
+              <Link href={'/dashboard'}><DropdownMenuItem>Dashboard</DropdownMenuItem></Link>
+              <DropdownMenuSeparator />
+              <Link href={'/Price'}><DropdownMenuItem>Pricing</DropdownMenuItem></Link>
+              <DropdownMenuSeparator />
+              <Link href={'/Blog'}><DropdownMenuItem>Blog</DropdownMenuItem></Link>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </div>
+
+
         <div className="flex items-center gap-12">
           <div className="flex gap-2 items-center">
             <img src="newCat.png" className=' w-[180px] md:w-[240px] block dark:hidden' alt="" />
@@ -62,7 +89,7 @@ function Header() {
               <div className={`bg-primary absolute top-[100%] left-0 w-full`}>
                 <div className="px-2 md:px-12 py-12 grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8">
                   {Templates.map((item, index) => (
-                    <Link key={index} href={'/dashboard/content/' + item.slug} onClick={()=>setOnList(false)}>
+                    <Link key={index} href={'/dashboard/content/' + item.slug} onClick={() => setOnList(false)}>
                       <div className="shadow-md rounded-sm border border-border flex items-start gap-2 px-4 py-2">
                         <div className="w-20 py-1">
                           <Image src={item.icon} className=' text-white' width={50} height={50} alt='icon' />

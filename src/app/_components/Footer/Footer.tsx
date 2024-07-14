@@ -12,7 +12,7 @@ function Footer() {
     return (
         <div className={`${isHidden ? "hidden" : ""} w-full`}>
         <hr className='border-border' />
-        <div className="flex flex-col sm:flex-row justify-between max-w-[80%] items-center p-4 m-auto">
+        <div className="flex flex-col sm:flex-row justify-between max-w-[90%] md:max-w-[80%] items-center p-4 m-auto">
             <div className="flex items-center gap-6 justify-start mb-4 sm:mb-0">
                 <MessageCircleMoreIcon size={26} />
                 <Instagram />
