@@ -15,6 +15,7 @@ import moment from 'moment'
 import { TotalUsageContext } from '@/app/(context)/TotalUsageContext'
 import { useRouter } from 'next/navigation'
 import { InstantCreditUpdate } from '@/app/(context)/InstantCreditUpdate'
+import { UserSubscriptionContext } from '@/app/(context)/UserSubscriptionContext'
 
 
 interface PROPS {
@@ -33,6 +34,7 @@ function CreateNewContent(props: PROPS) {
 
     const { totalUse, setTotalUse } = useContext<any>(TotalUsageContext);
     const { creditUpdate, setCreditUpdate } = useContext<any>(InstantCreditUpdate);
+    const { userSubscription, setUserSubscription } = useContext<any>(UserSubscriptionContext)
 
     /**
      * AI DATA GENERATOR
@@ -40,7 +42,7 @@ function CreateNewContent(props: PROPS) {
      * @returns 
      */
     const GenerateAIContent = async (formData: any) => {
-        if (totalUse >= 10000) {
+        if (!userSubscription&&totalUse >= 10000) {
             router.push('/dashboard/billing')
             return;
         }
