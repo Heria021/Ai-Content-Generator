@@ -56,7 +56,7 @@ function History() {
 
   const formResolver = (data: string | null) => {
     let formObj: any[] = [];
-    
+
     if (data) {
       formObj.push(JSON.parse(data));
       return (
@@ -71,10 +71,10 @@ function History() {
         </>
       );
     }
-  
+
     return 'Data is null or empty';
   }
-  
+
   return (
     <div className='p-2 md:p-10'>
       <Table>
@@ -82,9 +82,9 @@ function History() {
         <TableHeader>
           <TableRow>
             <TableHead>AI Response</TableHead>
-            <TableHead>Created By</TableHead>
-            <TableHead>Input</TableHead>
-            <TableHead>Created At</TableHead>
+            <TableHead className='hidden md:table-cell'>Created By</TableHead>
+            <TableHead className='hidden md:table-cell'>Input</TableHead>
+            <TableHead className='hidden md:table-cell'>Created At</TableHead>
             <TableHead>copy</TableHead>
           </TableRow>
         </TableHeader>
@@ -92,9 +92,9 @@ function History() {
           {history.map((item, index) => (
             <TableRow key={index}>
               <TableCell className='line-clamp-3 p-0 m-2 max-w-2xl'>{item.aiResponse}</TableCell>
-              <TableCell>{item.createdBy}</TableCell>
-              <TableCell className=' max-w-[300px]'>{formResolver(item.formData)}</TableCell>
-              <TableCell>{item.createdAt}</TableCell>
+              <TableCell className='hidden md:table-cell'>{item.createdBy}</TableCell>
+              <TableCell className='hidden md:table-cell max-w-[300px]'>{formResolver(item.formData)}</TableCell>
+              <TableCell className='hidden md:table-cell'>{item.createdAt}</TableCell>
               <TableCell>
                 <Button
                   id={`${index}`}
@@ -110,7 +110,6 @@ function History() {
           ))}
         </TableBody>
       </Table>
-
     </div>
   )
 }
